@@ -3,6 +3,9 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Main {
@@ -30,8 +33,30 @@ public class Main {
 
         if (response != null) {
             JSONObject data = new JSONObject(response.body());
-            System.out.println(data);
+            JSONArray movies = data.getJSONArray("items");
+
+            ArrayList<String> titles = getAttributeList(movies, "title");
+            ArrayList<String> urlImages = getAttributeList(movies, "image");
+            ArrayList<String> years = getAttributeList(movies, "year");
+            ArrayList<String> imDbRatings = getAttributeList(movies, "imDbRating");
+
+            titles.forEach(System.out::println);
+            urlImages.forEach(System.out::println);
+            years.forEach(System.out::println);
+            imDbRatings.forEach(System.out::println);
         }
+    }
+
+    public static ArrayList<String> getAttributeList(JSONArray array, String attribute) {
+        ArrayList<String> attributeList = new ArrayList<>();
+
+        for (int i=0; i<array.length(); i++) {
+            JSONObject movie = array.getJSONObject(i);
+            String attr = movie.get(attribute).toString();
+            attributeList.add(attr);
+        }
+
+        return  attributeList;
     }
 
 }
