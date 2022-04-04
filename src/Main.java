@@ -33,30 +33,22 @@ public class Main {
 
         if (response != null) {
             JSONObject data = new JSONObject(response.body());
-            JSONArray movies = data.getJSONArray("items");
+            JSONArray items = data.getJSONArray("items");
 
-            ArrayList<String> titles = getAttributeList(movies, "title");
-            ArrayList<String> urlImages = getAttributeList(movies, "image");
-            ArrayList<String> years = getAttributeList(movies, "year");
-            ArrayList<String> imDbRatings = getAttributeList(movies, "imDbRating");
+            ArrayList<Movie> movies = new ArrayList<>();
 
-            titles.forEach(System.out::println);
-            urlImages.forEach(System.out::println);
-            years.forEach(System.out::println);
-            imDbRatings.forEach(System.out::println);
+            for (int i=0; i<items.length(); i++) {
+                JSONObject item = items.getJSONObject(i);
+                String title = item.getString("title");
+                String urlImage = item.getString("image");
+                Float rating = item.getFloat("imDbRating");
+                Integer year = item.getInt("year");
+
+                movies.add(new Movie(title, urlImage, rating, year));
+            }
+
+            movies.forEach(System.out::println);
         }
-    }
-
-    public static ArrayList<String> getAttributeList(JSONArray array, String attribute) {
-        ArrayList<String> attributeList = new ArrayList<>();
-
-        for (int i=0; i<array.length(); i++) {
-            JSONObject movie = array.getJSONObject(i);
-            String attr = movie.get(attribute).toString();
-            attributeList.add(attr);
-        }
-
-        return  attributeList;
     }
 
 }
