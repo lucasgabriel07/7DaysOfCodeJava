@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    font-family: Montserrat, sans-serif;
+    font-weight: normal;
+}
+
+body {
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+header {
+    background-color: #111111;
+    padding: 16px;
+}
+
+.title {
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+main {
+    padding: 64px;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+.movie {
+    background-color: #111111;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.movie-link {
+    color: #FFFFFF;
+    font-size: 22px;
+    text-decoration: none;
+    position: absolute;
+    top: 8px;
+    right: 12px;
+}
+
+.movie-ranking {
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+.movie-title {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.movie-img {
+    width: 80%;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-text {
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+footer {
+    background-color: #111111;
+    padding: 32px;
+}
+
+footer p {
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 8px;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 32px 5%;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .movie-link {
+        font-size: 18px;
+    }
+
+    .movie-ranking {
+        font-size: 24px;
+        color: #FFFFFF;
+    }
+
+    .list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+    }
+
+    .movie-title {
+        font-size: 18px;
+    }
+
+    .movie-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 540px) {
+    .movie-title {
+        font-size: 14px;
+    }
+
+    .movie-text {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 8px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .movie-link {
+        font-size: 14px;
+    }
+
+    .movie-ranking {
+        font-size: 16px;
+        color: #FFFFFF;
+    }
+
+    .list {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+    }
+
+    .movie-title {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .list {
+        grid-template-columns: 1fr 1fr;
+    }
+}

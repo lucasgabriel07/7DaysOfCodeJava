@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -39,15 +40,23 @@ public class Main {
 
             for (int i=0; i<items.length(); i++) {
                 JSONObject item = items.getJSONObject(i);
+                String id = item.getString("id");
                 String title = item.getString("title");
                 String urlImage = item.getString("image");
                 Float rating = item.getFloat("imDbRating");
                 Integer year = item.getInt("year");
+                Integer ranking = i + 1;
 
-                movies.add(new Movie(title, urlImage, rating, year));
+                movies.add(new Movie(id, title, urlImage, rating, year, ranking));
             }
 
-            movies.forEach(System.out::println);
+            try {
+                HTMLGenerator generator = new HTMLGenerator(new FileWriter("index.html"));
+                generator.generate(movies);
+                System.out.println("HTML gerado com sucesso!");
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         }
     }
 
