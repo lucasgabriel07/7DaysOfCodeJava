@@ -7,24 +7,39 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class ImdbApiClient {
+public class ImdbApiClient implements APIClient {
 
-    public JSONArray fetch() throws IOException, InterruptedException {
-        Dotenv dotenv = new Dotenv();
-        String API_KEY = dotenv.getEnv("API_KEY");
-        String url = "https://imdb-api.com/en/API/Top250Movies/" + API_KEY;
+    public JSONArray getBody() throws IOException, InterruptedException {
+        String API_KEY;
 
-        HttpClient client = HttpClient.newHttpClient();
+        try {
+            Dotenv dotenv = new Dotenv();
+            API_KEY = dotenv.getEnv("API_KEY");
+        } catch (IOException exception) {
+            System.out.println("Erro ao carregar arquivo .env.\n" +
+                    "Crie um arquivo com o nome '.env' na raiz do projeto, " +
+                    "e cole sua API KEY no arquivo, com o seguinte formato:\n" +
+                    "API_KEY=<Sua chave aqui>");
+            return null;
+        }
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("accept", "application/json")
-                .GET()
-                .build();
+        if (API_KEY != null) {
+            String url = "https://imdb-api.com/en/API/Top250Movies/" + API_KEY;
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        JSONObject data = new JSONObject(response.body());
+            HttpClient client = HttpClient.newHttpClient();
 
-        return data.getJSONArray("items");
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("accept", "application/json")
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            JSONObject data = new JSONObject(response.body());
+
+            return data.getJSONArray("items");
+        }
+
+        return null;
     }
 }

@@ -6,20 +6,16 @@ import java.util.HashMap;
 public class Dotenv {
     private final HashMap<String, String> env;
 
-    public Dotenv() {
+    public Dotenv() throws IOException {
 
         this.env = new HashMap<>();
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(".env"));
-            String line;
-            while((line = reader.readLine()) != null) {
-                String key = line.split("=")[0];
-                String value = line.split("=")[1];
-                env.put(key, value);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        BufferedReader reader = new BufferedReader(new FileReader(".env"));
+        String line;
+        while((line = reader.readLine()) != null) {
+            String key = line.split("=")[0];
+            String value = line.split("=")[1];
+            env.put(key, value);
         }
     }
 

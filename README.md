@@ -24,7 +24,7 @@ Gerar uma página HTML a partir da lista de objetos obtida, com as informações
 ### ✅ Dia 5
 Encapsular algumas das chamadas desenvolvidas em novas classes.
 
-### ⌛ Dia 6
+### ✅ Dia 6
 Deixar o código mais genérico, preparado para receber dados de outras APIs, utilizando interfaces.
 
 ### ⌛ Dia 7

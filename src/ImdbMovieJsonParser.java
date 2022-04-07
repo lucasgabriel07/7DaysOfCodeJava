@@ -3,7 +3,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ImdbMovieJsonParser {
+public class ImdbMovieJsonParser implements JsonParser {
 
     private final JSONArray items;
 
@@ -17,13 +17,13 @@ public class ImdbMovieJsonParser {
         for (int i=0; i<items.length(); i++) {
             JSONObject item = items.getJSONObject(i);
             String id = item.getString("id");
+            String rank = item.getString("rank");
             String title = item.getString("title");
             String urlImage = item.getString("image");
-            Float rating = item.getFloat("imDbRating");
-            Integer year = item.getInt("year");
-            Integer ranking = i + 1;
+            String rating = item.getString("imDbRating");
+            String year = item.getString("year");
 
-            movies.add(new Movie(id, title, urlImage, rating, year, ranking));
+            movies.add(new Movie(id, rank, title, urlImage, rating, year));
         }
 
         return movies;

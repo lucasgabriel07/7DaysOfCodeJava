@@ -11,14 +11,15 @@ public class Main {
         ImdbApiClient client = new ImdbApiClient();
 
         try {
-            JSONArray items = client.fetch();
-            ImdbMovieJsonParser parser = new ImdbMovieJsonParser(items);
-            ArrayList<Movie> movies = parser.parse();
-
-            HTMLGenerator generator = new HTMLGenerator(new FileWriter("index.html"));
-            generator.generate(movies);
-
-            System.out.println("HTML gerado com sucesso!");
+            JSONArray items = client.getBody();
+            if (items != null) {
+                ImdbMovieJsonParser parser = new ImdbMovieJsonParser(items);
+                ArrayList<Movie> movies = parser.parse();
+                String title = "Top 250 filmes - IMDb";
+                HTMLGenerator generator = new HTMLGenerator(new FileWriter("index.html"), title);
+                generator.generate(movies);
+                System.out.println("HTML gerado com sucesso!");
+            }
         } catch (IOException | InterruptedException exception) {
             exception.printStackTrace();
         }

@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class HTMLGenerator {
 
     private final Writer writer;
+    private final String title;
 
-    public HTMLGenerator(Writer writer) {
+    public HTMLGenerator(Writer writer, String title) {
         this.writer = writer;
+        this.title = title;
     }
 
     public void generate(ArrayList<Movie> movies) throws IOException {
@@ -17,6 +19,7 @@ public class HTMLGenerator {
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <link rel="stylesheet" href="styles.css">
+          <title>%s</title>
         </head>
         """;
 
@@ -24,7 +27,7 @@ public class HTMLGenerator {
         """
         <body>
           <header>
-            <h1 class="title">Top 250 Filmes - IMDb</h1>
+            <h1 class="title">%s</h1>
           </header>
         <main>
           <ul class="list">
@@ -52,14 +55,14 @@ public class HTMLGenerator {
         </body>
         """;
 
-        writer.write(head);
-        writer.write(body);
+        writer.write(String.format(head, title));
+        writer.write(String.format(body, title));
 
         for (Movie movie : movies) {
             writer.write(String.format(
                     divTemplate, 
                     movie.getId(),
-                    movie.getRanking(),
+                    movie.getRank(),
                     movie.getTitle(),
                     movie.getUrlImage(),
                     movie.getTitle(),
