@@ -29,3 +29,16 @@ Deixar o código mais genérico, preparado para receber dados de outras APIs, ut
 
 ### ⌛ Dia 7
 Ordenar a lista com base em diferentes atributos, utilizando a classe Collections e as interfaces Comparable e Comparator.
+
+## Rodando a aplicação
+
+Para rodar a aplicação corretamente, é necessária uma API Key.
+
+- Obtenha uma API Key em https://imdb-api.com/api
+- Crie um arquivo com o nome ".env" na raiz do projeto, contendo a chave da API com o formato "API_KEY=\<Sua chave aqui\>"
+  
+  No terminal:
+  
+  ```(bash)
+  echo API_KEY=<Sua chave aqui> >> .env
+  ```
