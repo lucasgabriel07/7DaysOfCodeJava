@@ -27,7 +27,7 @@ Encapsular algumas das chamadas desenvolvidas em novas classes.
 ### ✅ Dia 6
 Deixar o código mais genérico, preparado para receber dados de outras APIs, utilizando interfaces.
 
-### ⌛ Dia 7
+### ✅ Dia 7
 Ordenar a lista com base em diferentes atributos, utilizando a classe Collections e as interfaces Comparable e Comparator.
 
 ## Rodando a aplicação

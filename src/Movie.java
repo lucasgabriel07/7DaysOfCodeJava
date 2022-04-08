@@ -1,4 +1,4 @@
-public class Movie implements Content {
+public class Movie implements Content, Comparable<Content> {
 
     private final String id;
     private final String rank;
@@ -48,5 +48,10 @@ public class Movie implements Content {
                   "\n  rating: " + rating +
                   "\n  year: " + year +
                 "\n}";
+    }
+
+    @Override
+    public int compareTo(Content o) {
+        return this.rating.compareTo(o.getRating());
     }
 }
